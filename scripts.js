@@ -138,7 +138,7 @@ function displaySchedule() {
 
     console.log("筛选后的课程数据:", weekData);
 
-    for (let i = 1; i < 13; i++) { // 假设最多13节
+    for (let i = 1; i < 13; i++) { // 假设最多12节
         const row = document.createElement('tr');
         const timeSlotCell = document.createElement('td');
         timeSlotCell.textContent = `第${i}节`;
