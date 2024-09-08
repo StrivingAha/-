@@ -1,5 +1,21 @@
 let scheduleData = [];
 
+// 从 localStorage 中加载数据
+function loadFromLocalStorage() {
+    const storedData = localStorage.getItem('scheduleData');
+    if (storedData) {
+        scheduleData = JSON.parse(storedData);
+        populateWeekSelect(); // 根据存储数据更新周次选择器
+        displaySchedule(); // 直接展示课程表
+        console.log("从 localStorage 加载的课程数据:", scheduleData);
+    }
+}
+
+// 保存到 localStorage
+function saveToLocalStorage(data) {
+    localStorage.setItem('scheduleData', JSON.stringify(data));
+}
+
 function loadSchedule() {
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
@@ -23,6 +39,7 @@ function loadSchedule() {
 
 function loadScheduleData(data) {
     scheduleData = parseCourses(data);
+    saveToLocalStorage(scheduleData); // 将解析后的数据保存到 localStorage
     populateWeekSelect(); // 加载后更新周次选择
     displaySchedule(); // 显示默认课程表
 }
@@ -136,13 +153,11 @@ function displaySchedule() {
             }
 				
             // 设置背景颜色
-           if (i >= 1 && i <= 4) { // 第一节到第四节
+            if (i >= 1 && i <= 4) { // 第一节到第四节
                 cell.style.backgroundColor = '#f5fffa'; // 这里可以更改为你想要的颜色
-            }
-          	else if (i >= 5 && i <= 8) { 
+            } else if (i >= 5 && i <= 8) { 
                 cell.style.backgroundColor = '#e0ffff'; 
-            }
-          	else{ 
+            } else { 
                 cell.style.backgroundColor = '#fffafa'; 
             }
             row.appendChild(cell);
@@ -151,3 +166,8 @@ function displaySchedule() {
         scheduleTableBody.appendChild(row);
     }
 }
+
+// 初次加载时从 localStorage 读取数据
+window.onload = function() {
+    loadFromLocalStorage();
+};
