@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>课程表导入与展示</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>课程表导入与展示</h1>
+        <input type="file" id="fileInput" accept=".xls, .xlsx" />
+        <button onclick="loadSchedule()">加载课程表</button>
+
+        <div id="weekSelector">
+            <label for="weekSelect">选择周次：</label>
+            <select id="weekSelect" onchange="displaySchedule()">
+                <!-- 这里的选项将由 JavaScript 动态填充 -->
+            </select>
+        </div>
+
+        <table id="scheduleTable">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>星期一</th>
+                    <th>星期二</th>
+                    <th>星期三</th>
+                    <th>星期四</th>
+                    <th>星期五</th>
+                    <th>星期六</th>
+                    <th>星期日</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 课程表将在这里动态生成 -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
